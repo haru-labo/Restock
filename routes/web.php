@@ -1,5 +1,9 @@
 <?php
 
+use App\Item;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ItemController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +15,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'ItemController@index');
