@@ -9,6 +9,13 @@ class ItemController extends Controller
 {
     public function index() {
         $items = Item::all();
-        return view('mypages.index', compact('items'));
+        $input = '';
+        return view('mypages.index', compact('items','input'));
+    }
+
+    public function categorySearch(Request $request) {
+        $input = $request->input;
+        $items = Item::where('category', 'like', '%'.$input.'%')->get();
+        return view('mypages.index', compact('items', 'input'));
     }
 }

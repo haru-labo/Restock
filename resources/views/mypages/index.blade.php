@@ -3,17 +3,11 @@
 @section('title', 'DailyUseItems')
 
 @section('content')
-<!-- modal start createNewItemForm -->
-    <from action="/additem" method="POST">
-        {{ csrf_field() }}
-
-    </from>
-<!-- modal end createNewItemForm -->
     <a class="button-secondary pure-button" href="#"><i class="fas fa-plus-circle"></i>追加</a>
-    <form class="pure-form" action="/catserch">
+    <form class="pure-form" action="/categorySearch" method="POST">
         {{ csrf_field() }}
-        <input type="text" class="pure-input-rounded">
-        <button type="submit" class="pure-button">CategorySearch</button>
+        <input type="text" name="input" value="{{$input}}" class="pure-input-rounded">
+        <button type="submit" class="pure-button">カテゴリー検索</button>
     </form>
 <!-- itemList -->
     <table class="pure-table">
@@ -22,7 +16,7 @@
             <th>品名</th>
             <th>ストック</th>
             <th>開封日</th>
-            <th>消費量（/日）</th>
+            <th>詰め替え頻度（日/個）</th>
             <th>編集／削除</th>
         </tr>
         @foreach ($items as $item)

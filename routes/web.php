@@ -20,3 +20,4 @@ use App\Http\Controllers\ItemController;
 // });
 
 Route::get('/', 'ItemController@index');
+Route::post('/categorySearch', 'ItemController@categorySearch');
