@@ -4,8 +4,8 @@
 
 @section('content')
     <a class="button-secondary pure-button" href="#"><i class="fas fa-plus-circle"></i>追加</a>
-    <form class="pure-form" action="/categorySearch" method="POST">
-        {{ csrf_field() }}
+    <form class="pure-form" action="/" method="GET">
+        @csrf
         <input type="text" name="input" value="{{$input}}" class="pure-input-rounded">
         <button type="submit" class="pure-button">カテゴリー検索</button>
     </form>
@@ -31,10 +31,17 @@
             <td>{{$item->dateopen}}</td>
             <td></td>
             <td>
-                <button class="button-warning pure-button">編集</button>
-                <button class="button-error pure-button">
-                    <i class="fa fa-trash"></i>削除
-                </button>
+                <form action="edit/{{ $item->id }}" method="POST">
+                    @csrf
+                    <button type="submit" class="button-warning pure-button">編集</button>
+                </form>
+                <form action="destroy/{{ $item->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button-error pure-button">
+                        <i class="fa fa-trash"></i>削除
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach
