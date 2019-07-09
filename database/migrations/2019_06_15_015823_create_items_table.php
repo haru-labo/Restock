@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
             $table->string('category');
             $table->string('name');
             $table->integer('stock');
-            $table->dateTime('dateopen');
+            $table->datetime('dateopen');
             $table->datetime('datelastopen');
             $table->timestamps();
         });

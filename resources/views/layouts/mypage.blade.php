@@ -11,6 +11,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    <h1><a href="/">@yield('title')</a></h1>
     @yield('content')
 </body>
 </html>

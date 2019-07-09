@@ -20,4 +20,8 @@ use App\Http\Controllers\ItemController;
 // });
 
 Route::get('/', 'ItemController@index');
-Route::delete('destroy/{id}', 'ItemController@destroy');
+Route::get('item/add', 'ItemController@add');
+Route::post('item/add', 'ItemController@create');
+Route::get('item/{id}/edit', 'ItemController@edit');
+Route::post('item/{id}/edit', 'ItemController@update');
+Route::delete('item/{id}/destroy', 'ItemController@destroy');
