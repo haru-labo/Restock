@@ -3,7 +3,7 @@
 @section('title', 'DailyUseItems')
 
 @section('content')
-    <a class="button-secondary pure-button" href="item/add">
+    <a class="button-secondary pure-button" href="/item/create">
         <i class="fas fa-plus-circle"></i>追加
     </a>
     <form class="pure-form" action="/" method="GET">
@@ -36,16 +36,16 @@
                 <td>{{$item->category}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->stock}}</td>
-                <td>{{$item->toYMD($item->dateopen)}}</td>
+                <td>{{$item->dateopen->format('Y/m/d')}}</td>
                 <td>{{$item->getDayPerStock()}}日</td>
                 <td>
-                    <form action="item/{{ $item->id }}/edit" method="GET">
+                    <form action="/item/{{ $item->id }}/edit" method="GET">
                         @csrf
                         <button type="submit" class="button-warning pure-button">
                             <i class="fas fa-edit"></i>編集
                         </button>
                     </form>
-                    <form action="{{ $item->id }}/delete" method="POST">
+                    <form action="/item/{{ $item->id }}/delete" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="button-error pure-button">

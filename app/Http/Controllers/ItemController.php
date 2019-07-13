@@ -19,14 +19,19 @@ class ItemController extends Controller
         return view('mypages.index', compact('items', 'input'));
     }
 
-    public function add()
+    public function create()
     {
-        return view('mypages.add');
+        return view('mypages.create');
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        //
+        $request['datelastopen'] = $request['dateopen'];
+        $this->validate($request, Item::$rules);
+        $item = new Item;
+        $form = $request->all();
+        unset($form['_token']);
+        $item->fill($form)->save();
         return redirect('/');
     }
 
@@ -38,7 +43,12 @@ class ItemController extends Controller
 
     public function update(Request $request)
     {
-        //
+        $this->validate($request, Item::$rules);
+        $item = Item::find($request->id);
+        $form = $request->all();
+        unset($form['_token']);
+        $form['datelastopen'] = $item->datelastopen;
+        $item->fill($form)->save();
         return redirect('/');
     }
 
