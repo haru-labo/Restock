@@ -12,7 +12,9 @@
     </ul>
 </div>
 @endif
-<form class="pure-form pure-form-aligned" action="/item/{{ $item->id }}/edit" method="POST">
+<div class="pure-g">
+    <div class="pure-u">
+    <form class="pure-form pure-form-aligned" action="/item/{{ $item->id }}/edit" method="POST">
         @csrf
         <legend>EditItem</legend>
         <fieldset>
@@ -33,7 +35,7 @@
             </div>
             <div class="pure-control-group">
                 <label for="dateopen">開封日</label>
-                <input id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="">
+                <input id="dateopen" name="dateopen" type="date" placeholder="dateopen">
                 <span class="pure-form-message-inline">必須</span>
             </div>
             <div class="pure-control-group">
@@ -50,4 +52,6 @@
             </div>
         </fieldset>
     </form>
+    </div>
+</div>
 @endsection

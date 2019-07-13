@@ -47,7 +47,6 @@ class ItemController extends Controller
         $item = Item::find($request->id);
         $form = $request->all();
         unset($form['_token']);
-        $form['datelastopen'] = $item->datelastopen;
         $item->fill($form)->save();
         return redirect('/');
     }

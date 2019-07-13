@@ -3,16 +3,22 @@
 @section('title', 'DailyUseItems')
 
 @section('content')
-    <a class="button-secondary pure-button" href="/item/create">
-        <i class="fas fa-plus-circle"></i>追加
-    </a>
-    <form class="pure-form" action="/" method="GET">
-        @csrf
-        <input type="text" name="input" value="{{$input}}" class="pure-input-rounded">
-        <button type="submit" class="pure-button">
-            <i class="fas fa-search"></i>カテゴリー検索
-        </button>
-    </form>
+<div class="pure-g">
+    <div class="pure-u">
+        <a class="button-secondary pure-button" href="/item/create">
+            <i class="fas fa-plus-circle"></i>追加
+        </a>
+    </div>
+    <div class="pure-u">
+        <form class="pure-form" action="/" method="GET">
+            @csrf
+            <input type="text" name="input" value="{{$input}}" class="pure-input-rounded">
+            <button type="submit" class="pure-button">
+                <i class="fas fa-search"></i>カテゴリー検索
+            </button>
+        </form>
+    </div>
+</div>
 <!-- itemList -->
     <table class="pure-table">
         <thead>
@@ -39,19 +45,21 @@
                 <td>{{$item->dateopen->format('Y/m/d')}}</td>
                 <td>{{$item->getDayPerStock()}}日</td>
                 <td>
-                    <form action="/item/{{ $item->id }}/edit" method="GET">
-                        @csrf
-                        <button type="submit" class="button-warning pure-button">
-                            <i class="fas fa-edit"></i>編集
-                        </button>
-                    </form>
-                    <form action="/item/{{ $item->id }}/delete" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="button-error pure-button">
-                            <i class="fa fa-trash"></i>削除
-                        </button>
-                    </form>
+                    <div class="pure-g">
+                        <form class="pure-u" action="/item/{{ $item->id }}/edit" method="GET">
+                            @csrf
+                            <button type="submit" class="button-warning pure-button">
+                                <i class="fas fa-edit"></i>編集
+                            </button>
+                        </form>
+                        <form class="pure-u" action="/item/{{ $item->id }}/delete" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="button-error pure-button">
+                                <i class="fa fa-trash"></i>削除
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

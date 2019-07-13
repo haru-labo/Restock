@@ -28,17 +28,5 @@ class Item extends Model
         return $this->dateopen->diffInDays($this->datelastopen);
     }
 
-    public function toDatelastopen($item)
-    {
-        $oldDateopen = $item->dateopen;
-        $item->datelastopen = $oldDateopen;
-        return $item;
-    }
-
-    public function toYMD($targetDate)
-    {
-        return $targetDate->format('Y-m-d');
-    }
-
     //$items = Item::All();
 }
