@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use Carbon\Carbon;
 
 class ItemController extends Controller
 {
@@ -32,7 +33,7 @@ class ItemController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $item->fill($form)->save();
-        return redirect('/');
+        return redirect('/')->with('flash_message', $item['name'].'を追加しました！');
     }
 
     public function edit($id)
@@ -48,12 +49,25 @@ class ItemController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $item->fill($form)->save();
-        return redirect('/');
+        return redirect('/')->with('flash_message', $item['name'].'を更新しました！');
     }
 
     public function destroy($id)
     {
         Item::destroy($id);
-        return redirect('/');
+        return redirect('/')->with('flash_message', '削除しました.');
+    }
+
+    public function open($id)
+    {
+        $openItem = Item::find($id);
+        if ($openItem['stock'] <= 0) {
+            return redirect('/')->with('flash_message', $openItem['name'].'のストック数が０です(><)!!');
+        }
+        $openItem['stock'] -= 1;
+        $openItem['datelastopen'] = $openItem['dateopen'];
+        $openItem['dateopen'] = Carbon::now();
+        $openItem->save();
+        return redirect('/')->with('flash_message', $openItem['name'].'を開封しました!');
     }
 }

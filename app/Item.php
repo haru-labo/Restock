@@ -19,7 +19,7 @@ class Item extends Model
         'category' => 'required',
         'name' => 'required',
         'stock' => 'required|integer|min:0|max:999',
-        'dateopen' => 'required|date_format:"Y-m-d"',
+        'dateopen' => 'required|date_format:"Y-m-d"|after:datelastopen',
         'datelastopen' => 'required|date_format:"Y-m-d"'
     );
 

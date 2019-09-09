@@ -35,12 +35,12 @@
             </div>
             <div class="pure-control-group">
                 <label for="dateopen">開封日</label>
-                <input id="dateopen" name="dateopen" type="date" placeholder="dateopen">
+                <input id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="{{ $item->dateopen->format('Y-m-d') }}">
                 <span class="pure-form-message-inline">必須</span>
             </div>
             <div class="pure-control-group">
                 <label for="datelastopen">前回開封日</label>
-                <input id="datelastopen" name="datelastopen" type="date" placeholder="datelastopen" value="{{ $item->dateopen->format('Y-m-d') }}">
+                <input id="datelastopen" name="datelastopen" type="date" placeholder="datelastopen" value="{{ $item->datelastopen->format('Y-m-d') }}">
             </div>
             <div class="pure-controls">
                 <button type="submit" class="pure-button pure-button-secondary">
