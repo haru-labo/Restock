@@ -3,19 +3,21 @@
 @section('title', 'DailyUseItems')
 
 @section('content')
-<div class="input-group mb-3">
-    <div class="pure-u">
+<div class="row">
+    <div class="col">
         <a class="btn btn-primary" href="/item/create">
             <i class="fas fa-plus-circle"></i>新規追加
         </a>
     </div>
-    <div class="pure-u">
-        <form class="pure-form" action="/" method="GET">
+    <div class="col">
+        <form action="/" method="GET" class="input-group">
             @csrf
             <input type="text" name="input" value="{{$input}}" class="form-control" placeholder="カテゴリー検索">
-            <button type="submit" class="btn btn-info">
-                <i class="fas fa-search"></i>
-            </button>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-info">
+                    <i class="fas fa-search"></i>
+                </button>
+            </span>
         </form>
     </div>
 </div>
