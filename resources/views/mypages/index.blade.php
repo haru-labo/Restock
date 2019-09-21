@@ -31,48 +31,44 @@
                 <th scope="col">ストック</th>
                 <th scope="col">開封日</th>
                 <th scope="col">開封ペース</th>
-                <th colspan="3" scope="colgroup">操作</th>
+                <th scope="col">操作</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($items as $item)
             @if ($item->stock === "1")
-                <tr class="table-warning">
+                <tr class="table-warning align-items-center align-middle">
             @elseif ($item->stock === "0")
-                <tr class="table-danger">
+                <tr class="table-danger align-items-center align-middle">
             @else
-                <tr>
+                <tr class="align-items-center align-middle">
             @endif
-                <td class="align-items-center align-middle">{{$item->category}}</td>
+                <td class="align-middle">{{$item->category}}</td>
                 <td class="align-middle">{{$item->name}}</td>
                 <td class="align-middle">{{$item->stock}}</td>
                 <td class="align-middle">{{$item->dateopen->format('Y/m/d')}}</td>
                 <td class="align-middle">{{$item->getDayPerStock()}}日</td>
-                <form class="col" action="/item/{{ $item->id }}/open" method="POST">
+                <td class="row align-middle">
+                <form class="col-lg-3 my-1" action="/item/{{ $item->id }}/open" method="POST">
                     @csrf
-                    <td>
                         <button type="submit" class="btn btn-danger">
                             <i class="fas fa-box-open"></i>開封
                          </button>
-                    </td>
                 </form>
-                <form class="col" action="/item/{{ $item->id }}/edit" method="GET">
+                <form class="col-lg-3 my-1" action="/item/{{ $item->id }}/edit" method="GET">
                     @csrf
-                    <td>
                         <button type="submit" class="btn btn-success">
                             <i class="fas fa-edit"></i>編集
                         </button>
-                    </td>
                 </form>
-                <form class="col" action="/item/{{ $item->id }}/destroy" method="POST">
+                <form class="col-lg-3 my-1" action="/item/{{ $item->id }}/destroy" method="POST">
                     @csrf
-                    <td>
                         @method('DELETE')
                         <button type="submit" class="btn btn-secondary">
                             <i class="fa fa-trash"></i>削除
                         </button>
-                    </td>
                 </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

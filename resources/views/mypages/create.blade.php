@@ -1,17 +1,6 @@
 @extends('layouts.mypage')
-
 @section('title', 'DailyUseItems')
-
 @section('content')
-@if (count($errors) > 0)
-<div>
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
 <div class="container">
     <form action="/item/store" method="POST">
         @csrf
@@ -38,10 +27,10 @@
                     <input  class="form-control is-valid" id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="{{old('dateopen')}}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary col-md-2">
+            <button type="submit" class="btn btn-primary col-md-2 mb-1">
                 <i class="fas fa-plus-circle"></i>新規追加
             </button>
-            <a class="btn btn-secondary col-md-2" href="/">
+            <a class="btn btn-secondary col-md-2 mb-1" href="/">
                 <i class="fas fa-window-close"></i>キャンセル
             </a>
         </fieldset>

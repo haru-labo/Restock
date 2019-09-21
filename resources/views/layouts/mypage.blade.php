@@ -23,6 +23,16 @@
 <body>
     <header>
         <div class="container">
+                {{-- error message --}}
+    @if (count($errors) > 0)
+    <div>
+        <ul class="list-group">
+            @foreach ($errors->all() as $error)
+            <li class="list-group-item list-group-item-warning font-weight-bold">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
             <!-- flash message -->
             @if (session('flash_message'))
             <div class="flash_message bg-success text-center text-white py-2 my-0">
