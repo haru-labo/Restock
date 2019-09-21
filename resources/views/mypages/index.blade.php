@@ -23,31 +23,31 @@
         </div>
     </div>
 <!-- itemList -->
-    <table class="table table-striped">
+    <table class="table">
         <thead>
             <tr>
-                <th>カテゴリー</th>
-                <th>品名</th>
-                <th>ストック</th>
-                <th>開封日</th>
-                <th>消費ペース</th>
-                <th>操作</th>
-                <th></th>
-                <th></th>
+                <th scope="col">カテゴリー</th>
+                <th scope="col">品名</th>
+                <th scope="col">ストック</th>
+                <th scope="col">開封日</th>
+                <th scope="col">開封ペース</th>
+                <th colspan="3" scope="colgroup">操作</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($items as $item)
-            @if ($loop->iteration % 2 == 0)
-            <tr>
+            @if ($item->stock === "1")
+                <tr class="table-warning">
+            @elseif ($item->stock === "0")
+                <tr class="table-danger">
             @else
-            <tr>
+                <tr>
             @endif
-                <td class="align-items-center">{{$item->category}}</td>
-                <td>{{$item->name}}</td>
-                <td>{{$item->stock}}</td>
-                <td>{{$item->dateopen->format('Y/m/d')}}</td>
-                <td>{{$item->getDayPerStock()}}日</td>
+                <td class="align-items-center align-middle">{{$item->category}}</td>
+                <td class="align-middle">{{$item->name}}</td>
+                <td class="align-middle">{{$item->stock}}</td>
+                <td class="align-middle">{{$item->dateopen->format('Y/m/d')}}</td>
+                <td class="align-middle">{{$item->getDayPerStock()}}日</td>
                 <form class="col" action="/item/{{ $item->id }}/open" method="POST">
                     @csrf
                     <td>
@@ -64,7 +64,7 @@
                         </button>
                     </td>
                 </form>
-                <form  class="col" action="/item/{{ $item->id }}/delete" method="POST">
+                <form class="col" action="/item/{{ $item->id }}/destroy" method="POST">
                     @csrf
                     <td>
                         @method('DELETE')
