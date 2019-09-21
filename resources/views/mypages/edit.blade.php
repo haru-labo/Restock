@@ -33,21 +33,21 @@
                 </small>
             </div>
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="dateopen">開封日</label>
                     <input class="form-control is-valid" id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="{{ $item->dateopen->format('Y-m-d') }}" required>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="datelastopen">前回開封日</label>
                     <input class="form-control" id="datelastopen" name="datelastopen" type="date" placeholder="datelastopen" value="{{ $item->datelastopen->format('Y-m-d') }}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-success col-2">
+            <button type="submit" class="btn btn-success col-md-2">
                 <i class="fas fa-edit"></i>更新
             </button>
-            <a class="btn btn-secondary col-2" href="/">
+            <a class="btn btn-secondary col-md-2" href="/">
                <i class="fas fa-window-close"></i>キャンセル
             </a>
         </fieldset>

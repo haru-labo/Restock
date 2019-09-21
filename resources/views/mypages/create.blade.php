@@ -33,15 +33,15 @@
                 </small>
             </div>
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="dateopen">開封日</label>
                     <input  class="form-control is-valid" id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="{{old('dateopen')}}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary col-2">
+            <button type="submit" class="btn btn-primary col-md-2">
                 <i class="fas fa-plus-circle"></i>新規追加
             </button>
-            <a class="btn btn-secondary col-2" href="/">
+            <a class="btn btn-secondary col-md-2" href="/">
                 <i class="fas fa-window-close"></i>キャンセル
             </a>
         </fieldset>
