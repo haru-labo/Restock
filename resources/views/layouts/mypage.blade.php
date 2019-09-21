@@ -18,13 +18,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
-    <!-- flash message -->
-    @if (session('flash_message'))
-        <div class="flash_message bg-success text-center py-3 my-0">
-            {{ session('flash_message') }}
+    <header>
+        <div class="container">
+            <!-- flash message -->
+            @if (session('flash_message'))
+            <div class="flash_message bg-success text-center py-3 my-0">
+                {{ session('flash_message') }}
+            </div>
+            @endif
+            <h1><a href="/">@yield('title')</a></h1>
         </div>
-    @endif
-    <h1><a href="/">@yield('title')</a></h1>
+    </header>
     @yield('content')
 </body>
 </html>

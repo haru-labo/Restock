@@ -3,24 +3,25 @@
 @section('title', 'DailyUseItems')
 
 @section('content')
-<div class="row">
-    <div class="col">
-        <a class="btn btn-primary" href="/item/create">
-            <i class="fas fa-plus-circle"></i>新規追加
-        </a>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col">
+            <a class="btn btn-primary" href="/item/create">
+                <i class="fas fa-plus-circle"></i>新規追加
+            </a>
+        </div>
+        <div class="col">
+            <form action="/" method="GET" class="input-group">
+                @csrf
+                <input type="text" name="input" value="{{$input}}" class="form-control" placeholder="カテゴリー検索">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </span>
+            </form>
+        </div>
     </div>
-    <div class="col">
-        <form action="/" method="GET" class="input-group">
-            @csrf
-            <input type="text" name="input" value="{{$input}}" class="form-control" placeholder="カテゴリー検索">
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-info">
-                    <i class="fas fa-search"></i>
-                </button>
-            </span>
-        </form>
-    </div>
-</div>
 <!-- itemList -->
     <table class="table table-striped">
         <thead>
@@ -35,13 +36,12 @@
                 <th></th>
             </tr>
         </thead>
-
         <tbody>
             @foreach ($items as $item)
             @if ($loop->iteration % 2 == 0)
             <tr>
             @else
-            <tr class="pure-table-odd">
+            <tr>
             @endif
                 <td class="align-items-center">{{$item->category}}</td>
                 <td>{{$item->name}}</td>
@@ -77,4 +77,5 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection
