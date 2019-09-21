@@ -14,6 +14,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    {{-- Fonts --}}
+    <link href="{{ asset('css/font.css') }}" rel="stylesheet">
+
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
