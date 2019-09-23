@@ -13,7 +13,7 @@
         <div class="col">
             <form action="/" method="GET" class="input-group">
                 @csrf
-                <input type="text" name="input" value="{{$input}}" class="form-control" placeholder="カテゴリー検索">
+                <input type="text" name="searchWord" value="{{$searchWord}}" class="form-control" placeholder="カテゴリー検索">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-info">
                         <i class="fas fa-search"></i>
@@ -47,7 +47,7 @@
                 <td class="align-middle">{{$item->name}}</td>
                 <td class="align-middle">{{$item->stock}}</td>
                 <td class="align-middle">{{$item->dateopen->format('Y/m/d')}}</td>
-                <td class="align-middle">{{$item->getDayPerStock()}}日</td>
+                <td class="align-middle">{{$item->dayperstock}}日</td>
                 <td class="row align-middle mr-0">
                     <form class="col-lg-4 my-1" action="/item/{{ $item->id }}/open" method="POST">
                         @csrf
@@ -73,5 +73,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $items->links() }}
 </div>
 @endsection

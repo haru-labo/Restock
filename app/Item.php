@@ -23,9 +23,9 @@ class Item extends Model
         'datelastopen' => 'required|date_format:"Y-m-d"'
     );
 
-    public function getDayPerStock()
+    public function setDayPerStock()
     {
-        return $this->dateopen->diffInDays($this->datelastopen);
+        return $this->fill(['dayperstock' => $this->dateopen->diffInDays($this->datelastopen)]);
     }
 
     //$items = Item::All();

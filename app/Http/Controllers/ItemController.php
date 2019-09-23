@@ -10,14 +10,17 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $input = $request->input;
+        $searchWord = $request->searchWord;
         $items = [];
-        if (!empty($input)) {
-            $items = Item::where('category', 'like', '%'.$input.'%')->get();
+        if (!empty($searchWord)) {
+            $items = Item::where('category', 'like', '%'.$searchWord.'%')->paginate(7);
         } else {
-            $items = Item::all();
+            $items = Item::orderBy('stock', 'asc')
+            ->orderBy('dayperstock', 'asc')
+            ->orderBy('dateopen', 'asc')
+            ->paginate(7);
         }
-        return view('mypages.index', compact('items', 'input'));
+        return view('mypages.index', compact('items', 'searchWord'));
     }
 
     public function create()
@@ -32,7 +35,7 @@ class ItemController extends Controller
         $item = new Item;
         $form = $request->all();
         unset($form['_token']);
-        $item->fill($form)->save();
+        $item->fill($form)->setDayPerStock()->save();
         return redirect('/')->with('flash_message', $item['name'].'を追加しました！');
     }
 
@@ -48,7 +51,7 @@ class ItemController extends Controller
         $item = Item::find($request->id);
         $form = $request->all();
         unset($form['_token']);
-        $item->fill($form)->save();
+        $item->fill($form)->setDayPerStock()->save();
         return redirect('/')->with('flash_message', $item['name'].'を更新しました！');
     }
 
@@ -61,25 +64,27 @@ class ItemController extends Controller
 
     public function open($id)
     {
-        $openItem = Item::find($id);
-        if ($openItem['stock'] <= 0) {
-            return redirect('/')->with('flash_message', $openItem['name'].'のストック数が０です(><)!!');
+        $item = Item::find($id);
+        if ($item->stock <= 0) {
+            return redirect('/')->with('flash_message', $item['name'].'のストック数が０です(><)!!');
         }
-        $openItem['stock'] -= 1;
-        $openItem['datelastopen'] = $openItem['dateopen'];
-        $openItem['dateopen'] = Carbon::now();
-        $openItem->save();
-        return redirect('/')->with('flash_message', $openItem['name'].'を開封しました!');
+        $item->fill([
+            'stock' => $item->stock -= 1,
+            'datelastopen' => $item->dateopen,
+            'dateopen' => Carbon::now(),
+            ])->setDayPerStock()->save();
+        return redirect('/')->with('flash_message', $item['name'].'を開封しました!');
     }
 
     public function restock($id)
     {
         $item = Item::find($id);
-        if ($item['stock'] >= 999) {
+        if ($item->stock >= 999) {
             return redirect('/')->with('flash_message', $item['name'].'にこれ以上ストックを追加できません！');
         }
-        $item['stock'] += 1;
-        $item->save();
+        $item->fill([
+            'stock' => $item->stock += 1
+            ])->save();
         return redirect('/')->with('flash_message', $item['name'].'のストックを1つ追加しました！');
     }
 }

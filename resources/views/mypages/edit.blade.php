@@ -30,7 +30,10 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="datelastopen">前回開封日</label>
-                    <input class="form-control" id="datelastopen" name="datelastopen" type="date" placeholder="datelastopen" value="{{ $item->datelastopen->format('Y-m-d') }}">
+                    <input class="form-control is-valid" id="datelastopen" name="datelastopen" type="date" placeholder="datelastopen" value="{{ $item->datelastopen->format('Y-m-d') }}"　aria-describedby="lastopenHelpBlock" required>
+                    <small id="lastopenHelpBlock" class="form-text text-muted">
+                        開封日の前の開封日
+                    </small>
                 </div>
             </div>
             <button type="submit" class="btn btn-success col-md-2 mb-1">
