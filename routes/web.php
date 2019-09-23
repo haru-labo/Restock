@@ -26,3 +26,4 @@ Route::get('item/{id}/edit', 'ItemController@edit');
 Route::post('item/{id}/edit', 'ItemController@update');
 Route::delete('item/{id}/destroy', 'ItemController@destroy');
 Route::post('item/{id}/open', 'ItemController@open');
+Route::post('item/{id}/restock', 'ItemController@restock');

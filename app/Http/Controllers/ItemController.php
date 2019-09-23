@@ -54,8 +54,9 @@ class ItemController extends Controller
 
     public function destroy($id)
     {
+        $item=Item::find($id);
         Item::destroy($id);
-        return redirect('/')->with('flash_message', '削除しました.');
+        return redirect('/')->with('flash_message', $item['name'].'を削除しました。');
     }
 
     public function open($id)
@@ -69,5 +70,16 @@ class ItemController extends Controller
         $openItem['dateopen'] = Carbon::now();
         $openItem->save();
         return redirect('/')->with('flash_message', $openItem['name'].'を開封しました!');
+    }
+
+    public function restock($id)
+    {
+        $item = Item::find($id);
+        if ($item['stock'] >= 999) {
+            return redirect('/')->with('flash_message', $item['name'].'にこれ以上ストックを追加できません！');
+        }
+        $item['stock'] += 1;
+        $item->save();
+        return redirect('/')->with('flash_message', $item['name'].'のストックを1つ追加しました！');
     }
 }

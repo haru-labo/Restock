@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row mb-2">
         <div class="col">
-            <a class="btn btn-primary" href="/item/create">
+            <a class="btn btn-outline-primary" href="/item/create">
                 <i class="fas fa-plus-circle"></i>新規追加
             </a>
         </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
 <!-- itemList -->
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">カテゴリー</th>
@@ -37,37 +37,37 @@
         <tbody>
             @foreach ($items as $item)
             @if ($item->stock === "1")
-                <tr class="table-warning align-items-center align-middle">
+                <tr class="table-warning align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
             @elseif ($item->stock === "0")
-                <tr class="table-danger align-items-center align-middle">
+                <tr class="table-danger align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
             @else
-                <tr class="align-items-center align-middle">
+                <tr class="align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
             @endif
                 <td class="align-middle">{{$item->category}}</td>
                 <td class="align-middle">{{$item->name}}</td>
                 <td class="align-middle">{{$item->stock}}</td>
                 <td class="align-middle">{{$item->dateopen->format('Y/m/d')}}</td>
                 <td class="align-middle">{{$item->getDayPerStock()}}日</td>
-                <td class="row align-middle">
-                <form class="col-lg-3 my-1" action="/item/{{ $item->id }}/open" method="POST">
-                    @csrf
+                <td class="row align-middle mr-0">
+                    <form class="col-lg-4 my-1" action="/item/{{ $item->id }}/open" method="POST">
+                        @csrf
                         <button type="submit" class="btn btn-danger">
                             <i class="fas fa-box-open"></i>開封
-                         </button>
-                </form>
-                <form class="col-lg-3 my-1" action="/item/{{ $item->id }}/edit" method="GET">
-                    @csrf
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-edit"></i>編集
                         </button>
-                </form>
-                <form class="col-lg-3 my-1" action="/item/{{ $item->id }}/destroy" method="POST">
-                    @csrf
+                    </form>
+                    <form class="col-lg-4 my-1" action="/item/{{ $item->id }}/restock" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-box"></i>補充
+                        </button>
+                    </form>
+                    <form class="col-lg-4 my-1" action="/item/{{ $item->id }}/destroy" method="POST">
+                        @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-secondary">
                             <i class="fa fa-trash"></i>削除
                         </button>
-                </form>
+                    </form>
                 </td>
             </tr>
             @endforeach
