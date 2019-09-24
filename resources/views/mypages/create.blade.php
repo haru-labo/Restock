@@ -24,7 +24,16 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="dateopen">開封日</label>
-                    <input  class="form-control is-valid" id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="{{old('dateopen')}}">
+                <input  class="form-control is-valid" id="dateopen" name="dateopen" type="date" placeholder="dateopen" value="{{old('dateopen')}}" value="{{old('dateopen')}}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="alertstock">お知らせストック数</label>
+                    <input class="form-control is-valid" id="alertstock" name="alertstock" type="number" min="0" max="999" placeholder="alertstock" value="{{old('alertstock')}}"　aria-describedby="alertstockHelpBlock" required>
+                    <small id="alertstockHelpBlock" class="form-text text-muted">
+                        ストック数がこの数値以下になると黄色で表示
+                    </small>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary col-md-2 mb-1">

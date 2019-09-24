@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->integer('dayperstock');
             $table->date('dateopen');
             $table->date('datelastopen');
+            $table->integer('alertstock');
             $table->timestamps();
         });
     }

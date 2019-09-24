@@ -36,10 +36,10 @@
         </thead>
         <tbody>
             @foreach ($items as $item)
-            @if ($item->stock === "1")
-                <tr class="table-warning align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
-            @elseif ($item->stock === "0")
+            @if ($item->stock === "0")
                 <tr class="table-danger align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
+            @elseif ($item->stock <= $item->alertstock)
+                <tr class="table-warning align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
             @else
                 <tr class="align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
             @endif

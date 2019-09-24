@@ -20,7 +20,8 @@ class ItemsTableSeeder extends Seeder
             'stock' => '0',
             'dayperstock' => '30',
             'dateopen' => '2019-06-22',
-            'datelastopen' => '2019-05-01'
+            'datelastopen' => '2019-05-01',
+            'alertstock' => '1'
         ];
         DB::table('items')->insert($param);
 
@@ -30,7 +31,8 @@ class ItemsTableSeeder extends Seeder
             'stock' => '1',
             'dayperstock' => '50',
             'dateopen' => '2019-06-23',
-            'datelastopen' => '2019-05-20'
+            'datelastopen' => '2019-05-20',
+            'alertstock' => '1'
         ];
         DB::table('items')->insert($param);
     }
