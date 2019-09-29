@@ -1,6 +1,6 @@
 @extends('layouts.mypage')
 
-@section('title', 'DailyUseItems')
+@section('title', 'Restock!')
 
 @section('content')
 
@@ -12,7 +12,7 @@
             </a>
         </div>
         <div class="col">
-            <form action="/" method="GET" class="input-group">
+            <form action={{ route('item.index') }} method="GET" class="input-group">
                 @csrf
                 <input type="text" name="searchWord" value="{{$searchWord}}" class="form-control" placeholder="カテゴリー検索">
                 <span class="input-group-btn">
@@ -38,11 +38,11 @@
         <tbody>
             @foreach ($items as $item)
             @if ($item->stock === "0")
-                <tr class="table-danger align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
+                <tr class="table-danger align-items-center align-middle clickable-row" data-href={{ route('item.edit', ['id' => $item->id]) }}>
             @elseif ($item->stock <= $item->alertstock)
-                <tr class="table-warning align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
+                <tr class="table-warning align-items-center align-middle clickable-row" data-href={{ route('item.edit', ['id' => $item->id]) }}>
             @else
-                <tr class="align-items-center align-middle clickable-row" data-href="/item/{{ $item->id }}/edit">
+                <tr class="align-items-center align-middle clickable-row" data-href={{ route('item.edit', ['id' => $item->id]) }}>
             @endif
                 <td class="align-middle">{{$item->category}}</td>
                 <td class="align-middle">{{$item->name}}</td>
@@ -50,7 +50,7 @@
                 <td class="align-middle">{{$item->dateopen->format('Y/m/d')}}</td>
                 <td class="align-middle">{{$item->dayperstock}}日</td>
                 <td class="row align-middle mr-0">
-                    <form class="col-lg-4 my-1" action="/item/{{ $item->id }}/open" method="POST">
+                    <form class="col-lg-4 my-1" action={{ route('item.open', ['id' => $item->id]) }} method="POST">
                         @csrf
                         <button type="submit" class="btn btn-danger">
                             <i class="fas fa-box-open"></i>開封

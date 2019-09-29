@@ -1,5 +1,5 @@
 @extends('layouts.mypage')
-@section('title', 'DailyUseItems')
+@section('title', 'Restock!')
 @section('content')
 <div class="container">
     <form action="/item/{{ $item->id }}/edit" method="POST">
@@ -48,7 +48,7 @@
             <button type="submit" class="btn btn-success col-md-2 mb-1">
                 <i class="fas fa-edit"></i>更新
             </button>
-            <a class="btn btn-secondary col-md-2 mb-1" href="/">
+            <a class="btn btn-secondary col-md-2 mb-1" href={{ route('item.index') }}>
                <i class="fas fa-window-close"></i>キャンセル
             </a>
         </fieldset>
