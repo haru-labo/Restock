@@ -3,6 +3,7 @@
 @section('title', 'DailyUseItems')
 
 @section('content')
+
 <div class="container">
     <div class="row mb-2">
         <div class="col">

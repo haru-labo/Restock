@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Item;
 use Carbon\Carbon;
 
@@ -10,6 +11,7 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
         $searchWord = $request->searchWord;
         $items = [];
         if (!empty($searchWord)) {
@@ -20,7 +22,7 @@ class ItemController extends Controller
             ->orderBy('dateopen', 'asc')
             ->paginate(7);
         }
-        return view('mypages.index', compact('items', 'searchWord'));
+        return view('mypages.index', compact('items', 'searchWord', 'user'));
     }
 
     public function create()
