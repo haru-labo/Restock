@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Item extends Model
 {
@@ -26,6 +27,16 @@ class Item extends Model
     public function setDayPerStock()
     {
         return $this->fill(['dayperstock' => $this->dateopen->diffInDays($this->datelastopen)]);
+    }
+
+    public function setRemainingDays()
+    {
+        $dateDiff = $this->dateopen->addDay($this->dayperstock)->diffInDays(Carbon::now());
+        if (Carbon::now()->lte($this->dateopen->addDay($this->dayperstock))) {
+            $this['remainingdays'] = $dateDiff;
+        } else {
+            $this['remainingdays'] = 0;
+        }
     }
 
     //$items = Item::All();

@@ -1,5 +1,5 @@
-jQuery(function($) {
+$(function($) {
     $(".clickable-row").css("cursor","pointer").click(function() {
-        window.location = $(this).data("href");
+        location.href = $(this).data("href");
     });
 });

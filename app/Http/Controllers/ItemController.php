@@ -15,13 +15,23 @@ class ItemController extends Controller
         $searchWord = $request->searchWord;
         $items = [];
         if (!empty($searchWord)) {
-            $items = Item::where('category', 'like', '%'.$searchWord.'%')->paginate(7);
+            $items = Item::where('category', 'like', '%'.$searchWord.'%')
+            ->orWhere('name', 'like', '%'.$searchWord.'%')
+            ->orderBy('stock', 'asc')
+            ->orderBy('dayperstock', 'asc')
+            ->orderBy('dateopen', 'asc')
+            ->paginate(7);
         } else {
             $items = Item::orderBy('stock', 'asc')
             ->orderBy('dayperstock', 'asc')
             ->orderBy('dateopen', 'asc')
             ->paginate(7);
         }
+
+        $items->each(function ($item) {
+            $item->setRemainingDays();
+        });
+
         return view('mypages.index', compact('items', 'searchWord', 'user'));
     }
 

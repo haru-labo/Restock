@@ -19,7 +19,7 @@ use App\Http\Controllers\ItemController;
 //     return view('welcome');
 // });
 
-Route::group(['prefix' => 'item'], function() {
+Route::group(['prefix' => 'item', 'middleware' => 'auth'], function() {
     Route::get('index', 'ItemController@index')->name('item.index');
     Route::get('create', 'ItemController@create')->name('item.create');
     Route::post('store', 'ItemController@store')->name('item.store');

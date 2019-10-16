@@ -19,14 +19,9 @@
 <body>
     <header>
         <div id="app" class="container mb-2">
-            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #F77F00;">
+            <nav class="navbar navbar-dark" style="background-color: #F77F00;">
                 <a class="navbar-brand mb-0 h1" href={{ route('item.index') }}>@yield('title')</a>
                 @if (Auth::check())
-                {{-- <ul class="navbar-nav mr-auto">
-                    <li class="navbar-item">
-                        <span class="navbar-text">{{ $user->name }}さんのRestockList</span>
-                    </li>
-                </ul> --}}
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="btn btn-outline-light" href="#">ログアウト</a>
