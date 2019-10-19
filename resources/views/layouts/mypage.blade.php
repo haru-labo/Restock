@@ -20,7 +20,7 @@
     <header>
         <div id="app" class="container mb-2">
             <nav class="navbar navbar-dark" style="background-color: #F77F00;">
-                <a class="navbar-brand mb-0 h1" href={{ route('item.index') }}>@yield('title')</a>
+                <a class="navbar-brand mb-0 h1" href={{ route('item.index') }}><img class="d-inline-block align-top mr-1" alt="ロゴ" src="{{ asset('/img/applogo.svg') }}" width="30" height="30">@yield('title')</a>
                 @if (Auth::check())
                 <ul class="navbar-nav">
                     <li class="nav-item">
