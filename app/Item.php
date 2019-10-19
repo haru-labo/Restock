@@ -17,8 +17,8 @@ class Item extends Model
     ];
 
     public static $rules = array(
-        'category' => 'required',
-        'name' => 'required',
+        'category' => 'required|max:36',
+        'name' => 'required|max:48',
         'stock' => 'required|integer|min:0|max:999',
         'dateopen' => 'required|date_format:"Y-m-d"|after_or_equal:datelastopen',
         'datelastopen' => 'required|date_format:"Y-m-d"'

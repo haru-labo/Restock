@@ -8,11 +8,17 @@
         <fieldset>
             <div class="form-group col-md-4">
                 <label for="category">カテゴリー</label>
-                <input  class="form-control is-valid" id="category" name="category" type="text" placeholder="category" value="{{old('category')}}" required>
+                <input class="form-control is-valid" id="category" name="category" type="text" placeholder="category" value="{{old('category')}}" aria-describedby="categoryHelpBlock" required>
+                <small id="categoryHelpBlock" class="form-text text-muted">
+                    36文字以内
+                </small>
             </div>
             <div class="form-group col-md-4">
                 <label for="name">品名</label>
-                <input class="form-control is-valid" id="name" name="name" type="text" placeholder="name" value="{{old('name')}}" required>
+                <input class="form-control is-valid" id="name" name="name" type="text" placeholder="name" value="{{old('name')}}" aria-describedby="nameHelpBlock" required>
+                <small id="nameHelpBlock" class="form-text text-muted">
+                    48文字以内
+                </small>
             </div>
             <div class="form-group col-md-2">
                 <label for="stock">ストック</label>

@@ -79,7 +79,7 @@ return [
     'max' => [
         'numeric' => ':attributeは:max以下にしてください。',
         'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
+        'string' => ':attributeは:max文字以内にしてください。',
         'array' => 'The :attribute may not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
