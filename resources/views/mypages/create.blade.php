@@ -2,7 +2,7 @@
 @section('title', 'Restock!')
 @section('content')
 <div class="container">
-    <form action="/item/store" method="POST">
+    <form action={{ route('item.store') }} method="POST">
         @csrf
         <legend class="shadow-sm p-2 mb-2 bg-white rounded">Add Item</legend>
         <fieldset>

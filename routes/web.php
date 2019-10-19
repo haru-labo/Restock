@@ -19,14 +19,20 @@ use App\Http\Controllers\ItemController;
 //     return view('welcome');
 // });
 
-Route::group(['prefix' => 'item', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'item', 'middleware' => 'auth'], function () {
     Route::get('index', 'ItemController@index')->name('item.index');
     Route::get('create', 'ItemController@create')->name('item.create');
     Route::post('store', 'ItemController@store')->name('item.store');
     Route::get('{id}/edit', 'ItemController@edit')->name('item.edit');
     Route::post('{id}/edit', 'ItemController@update')->name('item.update');
     Route::delete('{id}/destroy', 'ItemController@destroy')->name('item.destroy');
+    Route::get('{id}/open', function () {
+        return redirect()->route('item.index');
+    });
     Route::post('{id}/open', 'ItemController@open')->name('item.open');
+    Route::get('{id}/restock', function () {
+        return redirect()->route('item.index');
+    });
     Route::post('{id}/restock', 'ItemController@restock')->name('item.restock');
 });
 

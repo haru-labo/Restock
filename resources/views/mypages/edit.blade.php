@@ -2,7 +2,7 @@
 @section('title', 'Restock!')
 @section('content')
 <div class="container">
-    <form action="/item/{{ $item->id }}/edit" method="POST">
+    <form action={{ route('item.edit', ['id' => $item->id]) }} method="POST">
         @csrf
         <legend class="shadow-sm p-2 mb-2 bg-white rounded">Edit Item</legend>
         <fieldset>
