@@ -146,8 +146,10 @@ return [
     */
 
     'attributes' => [
-        'dateopen'=>'開封日',
-        'datelastopen'=>'前回開封日',
+        'category' => 'カテゴリー',
+        'name' => '品名',
+        'dateopen' => '開封日',
+        'datelastopen' => '前回開封日',
     ],
 
 ];

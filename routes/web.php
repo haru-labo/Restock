@@ -15,9 +15,9 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('auth/login');
+});
 
 Route::group(['prefix' => 'item', 'middleware' => 'auth'], function () {
     Route::get('index', 'ItemController@index')->name('item.index');
@@ -38,4 +38,4 @@ Route::group(['prefix' => 'item', 'middleware' => 'auth'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
