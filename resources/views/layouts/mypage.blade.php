@@ -55,5 +55,10 @@
         </div>
     </header>
     @yield('content')
+    <footer>
+        <div class="container">
+            <p class="text-center text-muted py-1"><small>&copy; HARU-LABO</small></p>
+        </div>
+    </footer>
 </body>
 </html>
