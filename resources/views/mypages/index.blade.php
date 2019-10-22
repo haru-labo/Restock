@@ -4,14 +4,14 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row mb-2">
-        <div class="col">
+<div class="container-fluid">
+    <div class="row justify-content-center mb-2">
+        <div class="col col-xl-5">
             <a class="btn btn-outline-primary" href="/item/create">
                 <i class="fas fa-plus-circle"></i>新規追加
             </a>
         </div>
-        <div class="col">
+        <div class="col col-xl-5">
             <form action={{ route('item.index') }} method="GET" class="input-group">
                 @csrf
                 <input type="text" name="searchWord" value="{{$searchWord}}" class="form-control" placeholder="検索">
@@ -24,9 +24,9 @@
         </div>
     </div>
 <!-- itemList -->
-    <div class="row">
-        <div class="col table-responsive">
-            <table class="table table-hover text-nowrap">
+    <div class="row justify-content-center">
+        <div class="col table-responsive-sm col-xl-10">
+            <table class="table table-hover table-bordered text-nowrap">
                 <thead></thead>
                 <tbody>
                 @foreach ($items as $item)
@@ -43,19 +43,20 @@
                             </small>
                         {{$item->name}}
                         </td>
-                        <td class="align-middle text-center" aria-describedby="stock">
+                        <td class="align-middle text-center text-wrap" aria-describedby="stock">
                             <small id="stock" class="form-text text-muted">
                                 ストック
                             </small>
                             {{$item->stock}}
                         </td>
-                        <td class="align-middle text-center" aria-describedby="remainingDays">
+                        <td class="align-middle text-center d-none d-md-table-cell" aria-describedby="remainingDays">
                             <small id="remainingDays" class="form-text text-muted">
-                                次回開封まで残り
+                                次回開封まで
                             </small>
+                            <small>あと</small>
                             {{$item->remainingdays}}日
                         </td>
-                        <td class="align-middle text-center" aria-describedby="dayPerStock">
+                        <td class="align-middle text-center d-none d-md-table-cell" aria-describedby="dayPerStock">
                             <small id="dayPerStock" class="form-text text-muted">
                                 消費ペース
                             </small>

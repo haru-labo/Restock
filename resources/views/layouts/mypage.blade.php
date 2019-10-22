@@ -8,9 +8,6 @@
 
     <title>@yield('title')</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font.css') }}" rel="stylesheet">
@@ -18,7 +15,7 @@
 </head>
 <body>
     <header>
-        <div id="app" class="container mb-2">
+        <div id="app" class="container-fluid mb-2">
             <nav class="navbar navbar-dark" style="background-color: #F77F00;">
                 <a class="navbar-brand mb-0 h1" href={{ route('item.index') }}><img class="d-inline-block align-top mr-1" alt="ロゴ" src="{{ asset('/img/applogo.svg') }}" width="30" height="30">@yield('title')</a>
                 @if (Auth::check())
@@ -56,9 +53,11 @@
     </header>
     @yield('content')
     <footer>
-        <div class="container">
+        <div class="container-fluid">
             <p class="text-center text-muted py-1"><small>&copy; HARU-LABO</small></p>
         </div>
     </footer>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
