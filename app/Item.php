@@ -24,6 +24,11 @@ class Item extends Model
         'datelastopen' => 'required|date_format:"Y-m-d"'
     );
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function setDayPerStock()
     {
         return $this->fill(['dayperstock' => $this->dateopen->diffInDays($this->datelastopen)]);

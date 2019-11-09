@@ -15,14 +15,18 @@ class ItemController extends Controller
         $searchWord = $request->searchWord;
         $items = [];
         if (!empty($searchWord)) {
-            $items = Item::where('category', 'like', '%' . $searchWord . '%')
+            $items = $user
+                ->items()
+                ->where('category', 'like', '%' . $searchWord . '%')
                 ->orWhere('name', 'like', '%' . $searchWord . '%')
                 ->orderBy('stock', 'asc')
                 ->orderBy('dayperstock', 'asc')
                 ->orderBy('dateopen', 'asc')
                 ->paginate(7);
         } else {
-            $items = Item::orderBy('stock', 'asc')
+            $items = $user
+                ->items()
+                ->orderBy('stock', 'asc')
                 ->orderBy('dayperstock', 'asc')
                 ->orderBy('dateopen', 'asc')
                 ->paginate(7);
@@ -42,18 +46,20 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
         $request['datelastopen'] = $request['dateopen'];
         $this->validate($request, Item::$rules);
         $item = new Item;
         $form = $request->all();
         unset($form['_token']);
-        $item->fill($form)->setDayPerStock()->save();
+        $item->fill($form)->setDayPerStock();
+        $user->items()->save($item);
         return redirect()->route('item.index')->with('flash_message', $item['name'] . 'を追加しました！');
     }
 
     public function edit($id)
     {
-        $item = Item::find($id);
+        $item = Auth::user()->items()->find($id);
         return view('mypages.edit', compact('item'));
     }
 

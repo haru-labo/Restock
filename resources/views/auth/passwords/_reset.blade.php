@@ -1,5 +1,5 @@
-@extends('layouts.mypage')
-@section('title', 'Restock!')
+@extends('layouts.app')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

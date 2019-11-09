@@ -15,6 +15,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->truncate();
 
         $param = [
+            'user_id' => '1',
             'category' => '食器用洗剤',
             'name' => 'キュキュット',
             'stock' => '0',
@@ -26,6 +27,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
+            'user_id' => '2',
             'category' => 'お風呂用洗剤',
             'name' => 'バスマジックリン',
             'stock' => '1',
