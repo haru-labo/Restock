@@ -5,5 +5,7 @@
     "Password": "パスワード",
     "Confirm Password": "パスワードの確認",
     "Register": "新規登録",
-    "Forgot Your Password?": "パスワードを忘れた場合はこちら"
+    "Forgot Your Password?": "パスワードを忘れた場合はこちら",
+    "Reset Password": "パスワードの再設定",
+    "Send Password Reset Link": "パスワード再設定用リンクを送る"
 }
