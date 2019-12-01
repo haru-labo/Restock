@@ -30,7 +30,7 @@ return [
         'array' => 'The :attribute must have between :min and :max items.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'confirmed' => ':attributeが確認用の値と一致しません。',
     'date' => ':attributeが日付ではありません。',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -79,7 +79,7 @@ return [
     'max' => [
         'numeric' => ':attributeは:max以下にしてください。',
         'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
+        'string' => ':attributeは:max文字以内にしてください。',
         'array' => 'The :attribute may not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -112,7 +112,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => ':attributeはすでに登録されています。',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
@@ -146,8 +146,12 @@ return [
     */
 
     'attributes' => [
-        'dateopen'=>'開封日',
-        'datelastopen'=>'前回開封日',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'category' => 'カテゴリー',
+        'name' => '品名',
+        'dateopen' => '開封日',
+        'datelastopen' => '前回開封日',
     ],
 
 ];

@@ -49369,9 +49369,9 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-jQuery(function ($) {
+$(function ($) {
   $(".clickable-row").css("cursor", "pointer").click(function () {
-    window.location = $(this).data("href");
+    location.href = $(this).data("href");
   });
 });
 

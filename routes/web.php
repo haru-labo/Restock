@@ -15,15 +15,27 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('auth/login');
+});
 
-Route::get('/', 'ItemController@index');
-Route::get('item/create', 'ItemController@create');
-Route::post('item/store', 'ItemController@store');
-Route::get('item/{id}/edit', 'ItemController@edit');
-Route::post('item/{id}/edit', 'ItemController@update');
-Route::delete('item/{id}/destroy', 'ItemController@destroy');
-Route::post('item/{id}/open', 'ItemController@open');
-Route::post('item/{id}/restock', 'ItemController@restock');
+Route::group(['prefix' => 'item', 'middleware' => 'auth'], function () {
+    Route::get('index', 'ItemController@index')->name('item.index');
+    Route::get('create', 'ItemController@create')->name('item.create');
+    Route::post('store', 'ItemController@store')->name('item.store');
+    Route::get('{id}/edit', 'ItemController@edit')->name('item.edit');
+    Route::post('{id}/edit', 'ItemController@update')->name('item.update');
+    Route::delete('{id}/destroy', 'ItemController@destroy')->name('item.destroy');
+    Route::get('{id}/open', function () {
+        return redirect()->route('item.index');
+    });
+    Route::post('{id}/open', 'ItemController@open')->name('item.open');
+    Route::get('{id}/restock', function () {
+        return redirect()->route('item.index');
+    });
+    Route::post('{id}/restock', 'ItemController@restock')->name('item.restock');
+});
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

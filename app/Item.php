@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Item extends Model
 {
@@ -16,16 +17,31 @@ class Item extends Model
     ];
 
     public static $rules = array(
-        'category' => 'required',
-        'name' => 'required',
+        'category' => 'required|max:36',
+        'name' => 'required|max:48',
         'stock' => 'required|integer|min:0|max:999',
         'dateopen' => 'required|date_format:"Y-m-d"|after_or_equal:datelastopen',
         'datelastopen' => 'required|date_format:"Y-m-d"'
     );
 
-    public function getDayPerStock()
+    public function user()
     {
-        return $this->dateopen->diffInDays($this->datelastopen);
+        return $this->belongsTo('App\User');
+    }
+
+    public function setDayPerStock()
+    {
+        return $this->fill(['dayperstock' => $this->dateopen->diffInDays($this->datelastopen)]);
+    }
+
+    public function setRemainingDays()
+    {
+        $dateDiff = $this->dateopen->addDay($this->dayperstock)->diffInDays(Carbon::now());
+        if (Carbon::now()->lte($this->dateopen->addDay($this->dayperstock))) {
+            $this['remainingdays'] = $dateDiff;
+        } else {
+            $this['remainingdays'] = 0;
+        }
     }
 
     //$items = Item::All();
