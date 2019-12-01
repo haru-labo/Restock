@@ -17,6 +17,6 @@ Laravelアプリの学習用に作成した、日用品管理Webアプリです�
 - 「検索」：アイテムのカテゴリおよび品名を検索して絞り込み表示を行う。
 - 「編集」：アイテムの行をクリックすると、アイテムの情報を編集できる。
 ## 作者
-[@HarukunSpace](https://twitter.com/HarukunSpace)
+[はるらぼ](https://blog.harukun-space.com/)
 ## License
 This software is released under the MIT License, see LICENSE.
