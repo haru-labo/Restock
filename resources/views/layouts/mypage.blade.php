@@ -30,9 +30,6 @@
                             @csrf
                         </form>
                     </li>
-                    {{-- <li class="nav-item">
-                        <span class="my-navbar-item mr-1">ようこそ、 {{ Auth::user()->name }}さん</span>
-                    </li> --}}
                 </ul>
                 @endif
             </nav>
@@ -52,9 +49,9 @@
                 {{ session('flash_message') }}
             </div>
             @endif
-            @if  (Auth::check())
+            {{-- @if  (Auth::check())
                 <div class="text-muted text-right">ようこそ、 {{ Auth::user()->name }}さん</div>
-            @endif
+            @endif --}}
         </div>
     </header>
     @yield('content')
